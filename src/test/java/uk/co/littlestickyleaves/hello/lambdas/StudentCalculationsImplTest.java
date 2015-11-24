@@ -18,7 +18,7 @@ public class StudentCalculationsImplTest {
 
     @Before
     public void setUp() throws Exception {
-        testObject = new LambdaStudentCalculations();
+        testObject = new ForLoopStudentCalculations();
     }
 
     @Test
@@ -137,6 +137,40 @@ public class StudentCalculationsImplTest {
         Assert.assertEquals(Integer.valueOf(39), result.get(8));
         Assert.assertEquals(Integer.valueOf(31), result.get(9));
     }
+
+    @Test
+    public void testFirstThreeStudents() {
+        // arrange
+        List<Student> students = testStudents();
+
+        // act
+        List<Student> result = testObject.firstThreeStudents(students);
+
+        // assert
+        Assert.assertEquals(3, result.size());
+        Assert.assertEquals(students.get(0), result.get(0));
+        Assert.assertEquals(students.get(1), result.get(1));
+        Assert.assertEquals(students.get(2), result.get(2));
+    }
+
+    @Test
+    public void testFirstThreeBornBeforeJuly() {
+        // arrange
+        List<Student> students = testStudents();
+
+        // act
+        List<Student> result = testObject.firstThreeWithBirthdaysBeforeJuly(students);
+
+        // assert
+        Assert.assertEquals(3, result.size());
+        Assert.assertTrue(students.get(0).getBirthday().getMonth().getValue() > Month.JUNE.getValue());
+        Assert.assertEquals(students.get(1), result.get(0));
+        Assert.assertTrue(students.get(2).getBirthday().getMonth().getValue() > Month.JUNE.getValue());
+        Assert.assertTrue(students.get(3).getBirthday().getMonth().getValue() > Month.JUNE.getValue());
+        Assert.assertEquals(students.get(4), result.get(1));
+        Assert.assertEquals(students.get(5), result.get(2));
+    }
+
 
     @Test
     public void testHighestMark() throws Exception {

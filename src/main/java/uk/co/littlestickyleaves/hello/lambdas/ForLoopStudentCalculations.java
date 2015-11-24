@@ -1,5 +1,6 @@
 package uk.co.littlestickyleaves.hello.lambdas;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import java.time.LocalDate;
@@ -129,6 +130,30 @@ public class ForLoopStudentCalculations implements StudentCalculations{
             ages.add(Period.between(student.getBirthday(), today).getYears());
         }
         return ages;
+    }
+
+    @Override
+    public List<Student> firstThreeStudents(List<Student> students) {
+        List<Student> firstThreeStudents = Lists.newArrayList();
+        for (int counter = 0; counter < 3; counter++) {
+           firstThreeStudents.add(students.get(counter));
+        }
+        return firstThreeStudents;
+    }
+
+    @Override
+    public List<Student> firstThreeWithBirthdaysBeforeJuly(List<Student> students) {
+        List<Student> firstThreeBornBeforeJuly = Lists.newArrayList();
+        int found = 0;
+        int counter = 0;
+        while(found < 3 && counter < students.size()) {
+            if (students.get(counter).getBirthday().getMonth().getValue() < Month.JULY.getValue()) {
+                found++;
+                firstThreeBornBeforeJuly.add(students.get(counter));
+            }
+            counter++;
+        }
+        return firstThreeBornBeforeJuly;
     }
 
     /**

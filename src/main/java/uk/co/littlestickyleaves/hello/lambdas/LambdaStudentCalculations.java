@@ -68,6 +68,21 @@ public class LambdaStudentCalculations implements StudentCalculations {
     }
 
     @Override
+    public List<Student> firstThreeStudents(List<Student> students) {
+        return students.stream()
+                .limit(3)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Student> firstThreeWithBirthdaysBeforeJuly(List<Student> students) {
+        return students.stream()
+                .filter(student -> student.getBirthday().getMonth().getValue() < Month.JULY.getValue())
+                .limit(3)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public double highestMark(List<Student> students) {
         return students.stream()
                 .mapToDouble(Student::getFinalMark)

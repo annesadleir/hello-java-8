@@ -24,6 +24,10 @@ public interface StudentCalculations {
 
     List<Integer> ages(List<Student> students);
 
+    List<Student> firstThreeStudents(List<Student> students);
+
+    List<Student> firstThreeWithBirthdaysBeforeJuly(List<Student> students);
+
     double highestMark(List<Student> students);
 
     double highestMarkOf2012(List<Student> students);
